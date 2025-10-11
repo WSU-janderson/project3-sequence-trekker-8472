@@ -5,6 +5,9 @@ using namespace std;
 
 class Sequence {
 public:
+
+    SequenceNode* head;
+    SequenceNode* tail;
     // Creates an empty sequence (numElts == 0) or a sequence of numElts items
     // indexed from 0 ... (numElts - 1).
     Sequence(size_t sz = 0);
@@ -71,6 +74,10 @@ public:
     // stream. This is *not* a method of the Sequence class, but instead it is a
     // friend function
     friend ostream& operator<<(ostream& os, const Sequence& s);
+
+
+
+
 };
 
 class SequenceNode {
