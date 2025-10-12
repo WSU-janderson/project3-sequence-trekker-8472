@@ -177,21 +177,21 @@ void Sequence::clear() {
 // The item at position is removed from the sequence, and the memory
 // is released. If called with an invalid position throws an exception.
 void Sequence::erase(size_t position) {
-    if (head == nullptr) {
+    if (head == nullptr) { //error chec1
         throw std::out_of_range("Warning: Empty Sequence");
     }
 
-    else if (position > size() || position > size()) {
+    else if (position > size()) {//error check 2
         throw std::out_of_range("Out of Range");
     }
     else {
-        SequenceNode* current = head;
-        for (size_t i = 0 ; i < position ; i++) {
+        SequenceNode* current = head; //start progression at head
+        for (size_t i = 0 ; i < position ; i++) { //iterate through series
             current = current->next;
         }
-        current->prev->next = current->next;
-        current->next->prev = current->prev;
-        delete current;
+        current->prev->next = current->next; //update pointer1
+        current->next->prev = current->prev; //update pointer two
+        delete current; //delte
     }
 }
 // The items in the sequence at ( position ... (position + count - 1) ) are
