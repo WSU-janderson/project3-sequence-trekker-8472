@@ -3,6 +3,8 @@
 
 using namespace std;
 
+class SequenceNode;
+
 class Sequence {
 public:
 
