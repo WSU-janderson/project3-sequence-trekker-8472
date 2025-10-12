@@ -40,6 +40,18 @@ Sequence::~Sequence() {
 // The current sequence is released and replaced by a (deep) copy of sequence
 // s. A reference to the copied sequence is returned (return *this;).
 Sequence & Sequence::operator=(const Sequence &s) {
+    if (this == &s) { //check if same
+        return *this;
+    }
+
+    clear(); //if not same clear so if prev too long no extra
+
+    SequenceNode* current = s.head; //begin point set
+    while (current != nullptr) { //iterate through
+        push_back(current->item); //add vis a vis pushback
+        current = current->next; //step forward
+    }
+    return *this;
 }
 // The position satisfies ( position >= 0 && position <= last_index() ).
 // The return value is a reference to the item at index position in the
@@ -206,11 +218,23 @@ void Sequence::erase(size_t position) {
     }
     else {
         SequenceNode* current = head; //start progression at head
+
         for (size_t i = 0 ; i < position ; i++) { //iterate through series
             current = current->next;
+        }//add check for if head or tail
+        if (current->prev != nullptr) {
+            current->prev->next = current->next; //update pointer1 if no head
         }
-        current->prev->next = current->next; //update pointer1
-        current->next->prev = current->prev; //update pointer two
+        else {
+            head = current->next; //update if is head
+        }
+
+        if (current->next != nullptr) {
+            current->next->prev = current->prev; //update pointer two if no tail
+        }
+        else {
+            tail = current->prev; //update is if tail
+        }
         delete current; //delete
     }
 }
