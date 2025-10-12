@@ -113,9 +113,62 @@ int main() {
     seq.push_back("Quatro");
     seq.push_back("Cinco");
 
-    cout << seq << endl;
+    cout << "Is sequence empty?" << endl;
 
+    if (seq.empty()) { //test if empty
+        cout << "Sequence is empty.\n";
+    }
+    else {
+        cout << "No: " << seq << endl;
+    }
 
+    cout<< "Testing exceptions! Should be no errors!" << endl;
+
+    try {
+        cout << "Front: " << seq.front() << endl;
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Back: " << seq.back() << endl;
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Insert: bananas at 2: " << endl;
+        seq.insert(2,"bananas");
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Operator[]: " << seq.operator[](1) << endl;
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Popback test: " << endl;
+        seq.pop_back();
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Erase (single) test: " << endl;
+        seq.erase(1);
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Erase (series) test: " << endl;
+        seq.erase(1, 2);
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
 
 
     return 0;
