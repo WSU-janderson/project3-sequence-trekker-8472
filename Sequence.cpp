@@ -98,7 +98,7 @@ void Sequence::insert(size_t position, std::string item) {
             newNode->prev = current->prev; //link new node to previous
             newNode->next = current; //link new node to current node forward
             current->prev->next = newNode; //link the previous's next to current
-            current->prev = newNode;
+            current->prev = newNode; // link current back to new node
         }
     }
     else {
@@ -109,13 +109,26 @@ void Sequence::insert(size_t position, std::string item) {
 // Returns the first element in the sequence. If the sequence is empty, throw an
 // exception.
 std::string Sequence::front() const {
+
+    if (head == nullptr) {// when head is null provided all other logic correct whole series is empty
+        throw std::out_of_range("Warning: Empty Sequence");
+    }
+    return head->item; //returns first item
 }
 // Returns the last element in the sequence. If the sequence is empty, throw an
 // exception.
 std::string Sequence::back() const {
+    if (head == nullptr) {// when head is null provided all other logic correct whole series is empty
+        throw std::out_of_range("Warning: Empty Sequence");
+    }
+    return tail->item; //returns last item
 }
 // Returns true if the sequence has no elements, otherwise false.
 bool Sequence::empty() const {
+    if (head == nullptr) { // when head is null provided all other logic correct whole series is empty
+        return true;
+    }
+    return false;
 }
 // Returns the number of elements in the sequence.
 size_t Sequence::size() const {
