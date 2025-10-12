@@ -5,7 +5,7 @@
 using namespace std;
 // Creates an empty sequence (numElts == 0) or a sequence of numElts items
 // indexed from 0 ... (numElts - 1).
-Sequence::Sequence(size_t sz) {
+Sequence::Sequence(size_t sz) {//create a number of empty posns
 
     for (size_t i = 0; i < sz; i++) {
         push_back("");
