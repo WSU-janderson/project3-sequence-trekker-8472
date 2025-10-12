@@ -14,7 +14,15 @@ Sequence::Sequence(size_t sz) {//create a number of empty posns
 }
 // Creates a (deep) copy of sequence s
 Sequence::Sequence(const Sequence &s) {
+    head = tail = nullptr; //start an empty link list copy from beginning of null
+
+    SequenceNode* current = s.head;//set copy start
+    while (current != nullptr) {
+        push_back(current->item); //uses pushback function for new item creation
+        current = current->next; //iterate through
+    }
 }
+
 // Destroys all items in the sequence and releases the memory
 // associated with the sequence
 Sequence::~Sequence() {
