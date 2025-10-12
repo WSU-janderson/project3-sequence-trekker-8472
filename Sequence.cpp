@@ -16,6 +16,15 @@ Sequence::Sequence(const Sequence &s) {
 // Destroys all items in the sequence and releases the memory
 // associated with the sequence
 Sequence::~Sequence() {
+    SequenceNode* current = head; //set location
+    while (current != nullptr) { //while loop to iterate through and delete each node
+        SequenceNode* deleteThisNext = current->next;
+        delete current;
+        current = deleteThisNext;
+    }
+
+    head = nullptr; //
+    tail = nullptr;
 }
 // The current sequence is released and replaced by a (deep) copy of sequence
 // s. A reference to the copied sequence is returned (return *this;).
@@ -30,15 +39,15 @@ std::string & Sequence::operator[](size_t position) {
 // The value of item is appended to the sequence.
 
 void Sequence::push_back(std::string item) {
-    SequenceNode* newNode = new SequenceNode(item);
+    SequenceNode* newNode = new SequenceNode(item);//create the item
 
-    if (tail == nullptr) {
-        head = tail = newNode;
+    if (tail == nullptr) { //basically checking if the link list is clear
+        head = tail = newNode; //if it is set thus so that the first node is created
     }
     else {
-        tail->next = newNode;
-        newNode->prev = tail;
-        tail = newNode;
+        tail->next = newNode; //link tail node to the new one
+        newNode->prev = tail; //reverse link the new one to the tail
+        tail = newNode; //set the new node itself as the last node
     }
 }
 // The item at the end of the sequence is deleted and size of the sequence is
