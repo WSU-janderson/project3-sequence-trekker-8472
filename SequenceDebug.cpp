@@ -76,6 +76,38 @@ int main() {
     }
 
     seq.push_back("Uno");
+
+    cout << seq << endl;
+
+    cout << "Testing not empty" << endl;
+
+    try {
+        cout << "Erase (single) test: " << endl;
+        seq.erase(2);
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Erase (series) test: " << endl;
+        seq.erase(1, 2);
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Insert: bananas at 2: " << endl;
+        seq.insert(2,"bananas");
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Operator[]: " << seq.operator[](1) << endl;
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
     seq.push_back("Dos");
     seq.push_back("Tres");
     seq.push_back("Quatro");
