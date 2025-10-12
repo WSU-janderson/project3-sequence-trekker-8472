@@ -18,6 +18,8 @@ int main() {
     //test buiding it
     Sequence seq;
 
+    cout << seq << endl;
+
     cout << "Head pointer: " << seq.head << endl;//verify empty constructor called
 
     if (seq.empty()) { //test if empty
@@ -26,6 +28,7 @@ int main() {
     else {
         cout << "Front: " << seq.front() << endl;
     }
+    cout << seq << endl;
 
     cout<< "Testing exceptions! Empty set errors!" << endl;
 
@@ -34,12 +37,14 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Back: " << seq.back() << endl;
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Insert: bananas at 2: " << endl;
@@ -47,12 +52,14 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Operator[]: " << seq.operator[](1) << endl;
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Popback test: " << endl;
@@ -60,6 +67,7 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Erase (single) test: " << endl;
@@ -67,6 +75,7 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Erase (series) test: " << endl;
@@ -74,6 +83,7 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     seq.push_back("Uno");
 

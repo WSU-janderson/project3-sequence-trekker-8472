@@ -298,9 +298,9 @@ ostream& operator<<(ostream &os, const Sequence &s) {//quick format fix from pus
     SequenceNode* current = s.head; //start with referred head
     while (current != nullptr) { //while iterator through the structure
 
-        os << position << ": ";//location/spot:
+        os << position << ": " << current->item;//location/spot:
         if (current->next != nullptr) {
-            os << current->item << ", "; //item, with comma
+            os << ", "; //item, with comma
         }
         current = current->next; //iterate item no final comma
         ++position;//progress position
