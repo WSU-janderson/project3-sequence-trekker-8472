@@ -293,11 +293,9 @@ ostream& operator<<(ostream &os, const Sequence &s) {//quick format fix from pus
     while (current != nullptr) { //while iterator through the structure
         if (current->next != nullptr) {
             os << position << ": ";//location/spot:
-        }//location/spot:
-        if (current->next != nullptr) { //updated to ensure no final comma
-            os << current->item << ", "; //item,
+            os << current->item << ", "; //item, with comma
         }
-        current = current->next; //iterate item
+        current = current->next; //iterate item no final comma
         ++position;//progress position
     }
     return os;
