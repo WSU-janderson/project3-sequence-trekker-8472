@@ -38,6 +38,20 @@ Sequence & Sequence::operator=(const Sequence &s) {
 // sequence. Throws an exception if the position is outside the bounds
 // of the sequence
 std::string & Sequence::operator[](size_t position) {
+    if ( position >= 0 && position < size() ) {
+
+        SequenceNode* current = head;
+
+        for (size_t i = 0; i < position; i++) {
+            current = current->next;
+        }
+
+        return current->item;
+
+    }
+    else {
+        throw out_of_range("Warning: Out of Bounds");
+    }
 }
 // The value of item is appended to the sequence.
 void Sequence::push_back(std::string item) {
@@ -79,12 +93,20 @@ void Sequence::pop_back() {
 // sequence
 void Sequence::insert(size_t position, std::string item) {
 
-    SequenceNode* current = head;
-    SequenceNode* newNode = new SequenceNode(item);//create the item
-
     if ( position >= 0 && position <= size() ) {//for some reason instructions have last_item instead of size(below)
-        if ( position == size() ) {
-            push_back(item);
+
+        SequenceNode* current = head;
+        SequenceNode* newNode = new SequenceNode(item);//create the item
+
+        if ( position == size() ) { //avoid seccond cALL for newNode by copying logic from within pushbak
+            if (tail == nullptr) { //basically checking if the link list is clear
+                head = tail = newNode; //if it is set thus so that the first node is created
+            }
+            else {
+                tail->next = newNode; //link tail node to the new one
+                newNode->prev = tail; //reverse link the new one to the tail
+                tail = newNode; //set the new node itself as the last node
+            }
         }
         else if (position == 0) {
             newNode->next = head;
