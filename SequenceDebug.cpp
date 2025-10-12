@@ -61,6 +61,20 @@ int main() {
         cout << "Caught exception: " << e.what() << endl;
     }
 
+    try {
+        cout << "Erase (single) test: " << endl;
+        seq.erase(1);
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
+    try {
+        cout << "Erase (series) test: " << endl;
+        seq.erase(1, 2);
+    } catch (const exception& e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+
     seq.push_back("Uno");
     seq.push_back("Dos");
     seq.push_back("Tres");
