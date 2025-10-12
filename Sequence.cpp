@@ -133,10 +133,18 @@ bool Sequence::empty() const {
 // Returns the number of elements in the sequence.
 size_t Sequence::size() const {
 
+    int size = 0;
+
+    if (head == nullptr) {  // if the head points to nothing, there is nothing
+        return 0;  // returns the nothing that there is of 0
+    }
     else {
-        for (int i = 0 ; i < position ; i++) {
-            current = current->next;
+        SequenceNode* current = head;//start Node Seq definition
+        while (current != nullptr) { //if current is null the sequence os complete
+            current = current->next; //increment step
+            size ++; //increment size
         }
+        return size; //return the final size
     }
 }
 // All items in the sequence are deleted and the memory associated with the
