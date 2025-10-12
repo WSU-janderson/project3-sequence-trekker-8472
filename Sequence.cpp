@@ -1,6 +1,6 @@
+#include "Sequence.h"
 #include <iostream>
 #include <string>
-#include "Sequence.h"
 #include <exception>
 
 using namespace std;
@@ -58,7 +58,7 @@ Sequence & Sequence::operator=(const Sequence &s) {
 // sequence. Throws an exception if the position is outside the bounds
 // of the sequence
 std::string & Sequence::operator[](size_t position) {
-    if ( position >= 0 && position < size() ) {
+    if (position < size()) {
 
         SequenceNode* current = head;
 
@@ -174,14 +174,12 @@ bool Sequence::empty() const {
 }
 // Returns the number of elements in the sequence.
 size_t Sequence::size() const {
-
-    size_t size = 0;
-
     if (head == nullptr) {  // if the head points to nothing, there is nothing
         return 0;  // returns the nothing that there is of 0
     }
     else {
-        SequenceNode* current = head;//start Node Seq series
+        size_t size = 0;
+        const SequenceNode* current = head;//start Node Seq series
         while (current != nullptr) { //if current is null the sequence os complete
             current = current->next; //increment step
             size ++; //increment size
@@ -253,7 +251,7 @@ void Sequence::erase(size_t position, size_t count) {
     else {
         SequenceNode* current = head; //set to beginning
 
-        for ( size_t i = 0 ; i < position ; i++ ) { //move current to starting position
+        for (size_t i = 0 ; i < position ; i++) { //move current to starting position
             current = current->next;
         }
 
@@ -283,13 +281,14 @@ void Sequence::erase(size_t position, size_t count) {
 // stream. This is *not* a method of the Sequence class, but instead it is a
 // friend function
 ostream& operator<<(ostream &os, const Sequence &s) {//quick format fix from pushed definition by clion
-    size_t position = 0;
+    size_t position = 0;// set the initial position location
 
-    SequenceNode* current = s.head;
-    while (current != nullptr) {
-        os << position << ": ";
-        os << current->item << ", ";
-        current = current->next;
-        ++position;
+    SequenceNode* current = s.head; //start with referred head
+    while (current != nullptr) { //while iterator through the structure
+        os << position << ": "; //location/spot:
+        os << current->item << ", "; //item,
+        current = current->next; //iterate item
+        ++position;//progress position
     }
+    return os;
 }
