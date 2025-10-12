@@ -6,6 +6,9 @@ using namespace std;
 // Creates an empty sequence (numElts == 0) or a sequence of numElts items
 // indexed from 0 ... (numElts - 1).
 Sequence::Sequence(size_t sz) {
+    for (size_t i = 0; i < sz; i++) {
+        push_back("");
+    }
 }
 // Creates a (deep) copy of sequence s
 Sequence::Sequence(const Sequence &s) {
@@ -27,6 +30,16 @@ std::string & Sequence::operator[](size_t position) {
 // The value of item is appended to the sequence.
 
 void Sequence::push_back(std::string item) {
+    SequenceNode* newNode = new SequenceNode(item);
+
+    if (tail == nullptr) {
+        head = tail = newNode;
+    }
+    else {
+        tail->next = newNode;
+        newNode->prev = tail;
+        tail = newNode;
+    }
 }
 // The item at the end of the sequence is deleted and size of the sequence is
 // reduced by one. If sequence was empty, throws an exception
