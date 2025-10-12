@@ -282,5 +282,14 @@ void Sequence::erase(size_t position, size_t count) {
 // Outputs all elements (ex: <4, 8, 15, 16, 23, 42>) as a string to the output
 // stream. This is *not* a method of the Sequence class, but instead it is a
 // friend function
-ostream & operator<<(ostream &os, const Sequence &s) {
+ostream& operator<<(ostream &os, const Sequence &s) {//quick format fix from pushed definition by clion
+    size_t position = 0;
+
+    SequenceNode* current = s.head;
+    while (current != nullptr) {
+        os << position << ": ";
+        os << current->item << ", ";
+        current = current->next;
+        ++position;
+    }
 }
