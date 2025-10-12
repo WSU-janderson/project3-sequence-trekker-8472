@@ -185,7 +185,13 @@ void Sequence::erase(size_t position) {
         throw std::out_of_range("Out of Range");
     }
     else {
-
+        SequenceNode* current = head;
+        for (size_t i = 0 ; i < position ; i++) {
+            current = current->next;
+        }
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+        delete current;
     }
 }
 // The items in the sequence at ( position ... (position + count - 1) ) are
