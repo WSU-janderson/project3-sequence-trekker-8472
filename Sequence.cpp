@@ -177,6 +177,16 @@ void Sequence::clear() {
 // The item at position is removed from the sequence, and the memory
 // is released. If called with an invalid position throws an exception.
 void Sequence::erase(size_t position) {
+    if (head == nullptr) {
+        throw std::out_of_range("Warning: Empty Sequence");
+    }
+
+    else if (position > size() || position > size()) {
+        throw std::out_of_range("Out of Range");
+    }
+    else {
+
+    }
 }
 // The items in the sequence at ( position ... (position + count - 1) ) are
 // deleted and their memory released. If called with invalid position and/or
@@ -187,7 +197,7 @@ void Sequence::erase(size_t position, size_t count) {
         throw std::out_of_range("Warning: Empty Sequence");
     }
 
-    else if (position > size() || position < 0 || position + count > size()) {
+    else if (position > size() || position + count > size()) {
         throw std::out_of_range("Out of Range");
     }
     else {
