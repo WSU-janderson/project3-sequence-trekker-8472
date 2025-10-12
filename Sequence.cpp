@@ -165,16 +165,36 @@ void Sequence::erase(size_t position, size_t count) {
         throw std::out_of_range("Warning: Empty Sequence");
     }
 
-    else if (position > size() || position <0 || position + count > size()) {
+    else if (position > size() || position < 0 || position + count > size()) {
         throw std::out_of_range("Out of Range");
     }
+    else {
+        SequenceNode* current = head; //set to beginning
 
-    SequenceNode* current = head; //set to beginning
+        for ( size_t i = 0 ; i < position ; i++ ) { //move current to starting position
+            current = current->next;
+        }
 
-    for ( size_t i = 0 ; i < position ; i++ ) { //move current to starting position
-        current = current->next;
+        for (size_t i = 0 ; i < count ; i++ ) { //run through the series to delete with if else accounting for
+            SequenceNode* temp = current; //is each node is the head and/or tail
+            current = current->next;
+
+            if (temp->prev != nullptr) { //if temp not head
+                temp->prev->next = temp->next; //set the previous node's pointer to the next node post tem
+            }
+            else { //if it is the head, set the head pointer to the next position
+                head = temp->next;
+            }
+            if (temp->next != nullptr) { //if temp is not the tail
+                temp->next->prev = temp->prev; //set tail to previous node before temp
+            }
+            else {
+                tail = temp->prev; //sets the tail pointer to the previous node
+            }
+
+            delete temp;
+        }
     }
-
 
 }
 // Outputs all elements (ex: <4, 8, 15, 16, 23, 42>) as a string to the output
