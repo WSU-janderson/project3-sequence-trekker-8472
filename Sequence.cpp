@@ -98,7 +98,7 @@ void Sequence::push_back(std::string item) {
 void Sequence::pop_back() {
 
     if (head == nullptr) {
-        return; //nothing is in the list to delete
+        throw out_of_range("Empty nothing to delete");
     }
 
     SequenceNode* current = tail;
