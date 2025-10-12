@@ -173,11 +173,23 @@ size_t Sequence::size() const {
 // sequence is released, resetting the sequence to an empty state that can have
 // items re-inserted.
 void Sequence::clear() {
+
+    SequenceNode* current = head; //set location
+
+    while (current != nullptr) { //while loop to iterate through and delete each node
+        SequenceNode* deleteThisNext = current->next;
+        delete current;
+        current = deleteThisNext;
+    }
+
+    head = nullptr; // set the beginning and end to nullptrs so that it finishes the whole reset
+    tail = nullptr;
+
 }
 // The item at position is removed from the sequence, and the memory
 // is released. If called with an invalid position throws an exception.
 void Sequence::erase(size_t position) {
-    if (head == nullptr) { //error chec1
+    if (head == nullptr) { //error check 1
         throw std::out_of_range("Warning: Empty Sequence");
     }
 
@@ -191,7 +203,7 @@ void Sequence::erase(size_t position) {
         }
         current->prev->next = current->next; //update pointer1
         current->next->prev = current->prev; //update pointer two
-        delete current; //delte
+        delete current; //delete
     }
 }
 // The items in the sequence at ( position ... (position + count - 1) ) are
