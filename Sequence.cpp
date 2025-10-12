@@ -95,7 +95,7 @@ void Sequence::insert(size_t position, std::string item) {
 
     if ( position >= 0 && position <= size() ) {//for some reason instructions have last_item instead of size(below)
 
-        SequenceNode* current = head;
+        SequenceNode* current = head; //start sequential run if necessary from head
         SequenceNode* newNode = new SequenceNode(item);//create the item
 
         if ( position == size() ) { //avoid seccond cALL for newNode by copying logic from within pushbak
