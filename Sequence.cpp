@@ -217,7 +217,7 @@ void Sequence::erase(size_t position) {
         throw std::out_of_range("Warning: Empty Sequence");
     }
 
-    else if (position > size()) {//error check 2
+    else if (position > size()-1) {//error check 2
         throw std::out_of_range("Out of Range");
     }
     else {
@@ -240,6 +240,9 @@ void Sequence::erase(size_t position) {
             tail = current->prev; //update is if tail
         }
         delete current; //delete
+        if (head == nullptr) {
+            clear(); // fixing empty
+        }
     }
 }
 // The items in the sequence at ( position ... (position + count - 1) ) are
@@ -251,7 +254,7 @@ void Sequence::erase(size_t position, size_t count) {
         throw std::out_of_range("Warning: Empty Sequence");
     }
 
-    else if (position > size() || position + count > size()) {
+    else if (position >= size() || position + count > size()) {//ogic fix
         throw std::out_of_range("Out of Range");
     }
     else {
@@ -279,6 +282,9 @@ void Sequence::erase(size_t position, size_t count) {
             }
 
             delete temp;
+            if (head == nullptr) {
+                clear(); // fixing empty
+            }
         }
     }
 

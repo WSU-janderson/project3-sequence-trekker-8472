@@ -87,6 +87,7 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Erase (series) test: " << endl;
@@ -94,6 +95,7 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Insert: bananas at 2: " << endl;
@@ -101,6 +103,7 @@ int main() {
     } catch (const exception& e) {
         cout << "Caught exception: " << e.what() << endl;
     }
+    cout << seq << endl;
 
     try {
         cout << "Operator[]: " << seq.operator[](1) << endl;
