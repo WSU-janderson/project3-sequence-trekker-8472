@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Sequence.h"
+#include <exception>
 
 using namespace std;
 // Creates an empty sequence (numElts == 0) or a sequence of numElts items
@@ -39,7 +40,6 @@ Sequence & Sequence::operator=(const Sequence &s) {
 std::string & Sequence::operator[](size_t position) {
 }
 // The value of item is appended to the sequence.
-
 void Sequence::push_back(std::string item) {
 
     SequenceNode* newNode = new SequenceNode(item);//create the item
@@ -78,6 +78,31 @@ void Sequence::pop_back() {
 // by one. Throws an exception if the position is outside the bounds of the
 // sequence
 void Sequence::insert(size_t position, std::string item) {
+    SequenceNode* current = head;
+    SequenceNode* newNode = new SequenceNode(item);//create the item
+
+
+    if ( position >= 0 && position <= size() ) {//for some reason instructions have last_item instead of size(below)
+        if ( position == size() ) {
+            push_back(item);
+        }
+         else if (position == 0) {
+            newNode->next = head;
+            head = newNode;
+        }
+        else {
+            for (int i = 0 ; i < position ; i++) {
+                current = current->next;
+            }
+            newNode->prev = current->prev; //link new node to previous
+            newNode->next = current; //link new node to current node forward
+            current->prev->next = newNode; //link the previous's next to current
+            current->prev = newNode;
+        }
+    }
+    else {
+        throw std::out_of_range("Out of Range");
+    }
 }
 
 // Returns the first element in the sequence. If the sequence is empty, throw an
