@@ -77,8 +77,7 @@ public:
     // friend function
     friend ostream& operator<<(ostream& os, const Sequence& s);
 
-
-
+    Sequence(); //default empty contructor
 
 };
 
