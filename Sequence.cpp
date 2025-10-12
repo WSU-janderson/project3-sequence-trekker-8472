@@ -139,7 +139,7 @@ size_t Sequence::size() const {
         return 0;  // returns the nothing that there is of 0
     }
     else {
-        SequenceNode* current = head;//start Node Seq definition
+        SequenceNode* current = head;//start Node Seq series
         while (current != nullptr) { //if current is null the sequence os complete
             current = current->next; //increment step
             size ++; //increment size
