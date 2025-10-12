@@ -92,7 +92,7 @@ void Sequence::insert(size_t position, std::string item) {
             head = newNode;
         }
         else {
-            for (int i = 0 ; i < position ; i++) {
+            for (size_t i = 0 ; i < position ; i++) {
                 current = current->next;
             }
             newNode->prev = current->prev; //link new node to previous
@@ -133,7 +133,7 @@ bool Sequence::empty() const {
 // Returns the number of elements in the sequence.
 size_t Sequence::size() const {
 
-    int size = 0;
+    size_t size = 0;
 
     if (head == nullptr) {  // if the head points to nothing, there is nothing
         return 0;  // returns the nothing that there is of 0
@@ -160,6 +160,22 @@ void Sequence::erase(size_t position) {
 // deleted and their memory released. If called with invalid position and/or
 // count throws an exception.
 void Sequence::erase(size_t position, size_t count) {
+
+    if (head == nullptr) {
+        throw std::out_of_range("Warning: Empty Sequence");
+    }
+
+    else if (position > size() || position <0 || position + count > size()) {
+        throw std::out_of_range("Out of Range");
+    }
+
+    SequenceNode* current = head; //set to beginning
+
+    for ( size_t i = 0 ; i < position ; i++ ) { //move current to starting position
+        current = current->next;
+    }
+
+
 }
 // Outputs all elements (ex: <4, 8, 15, 16, 23, 42>) as a string to the output
 // stream. This is *not* a method of the Sequence class, but instead it is a
