@@ -6,6 +6,7 @@ using namespace std;
 // Creates an empty sequence (numElts == 0) or a sequence of numElts items
 // indexed from 0 ... (numElts - 1).
 Sequence::Sequence(size_t sz) {
+
     for (size_t i = 0; i < sz; i++) {
         push_back("");
     }
@@ -25,6 +26,7 @@ Sequence::~Sequence() {
 
     head = nullptr; // set the beginning and end to nullptrs so that it finishes the whole reset
     tail = nullptr;
+
 }
 // The current sequence is released and replaced by a (deep) copy of sequence
 // s. A reference to the copied sequence is returned (return *this;).
@@ -39,6 +41,7 @@ std::string & Sequence::operator[](size_t position) {
 // The value of item is appended to the sequence.
 
 void Sequence::push_back(std::string item) {
+
     SequenceNode* newNode = new SequenceNode(item);//create the item
 
     if (tail == nullptr) { //basically checking if the link list is clear
@@ -53,6 +56,22 @@ void Sequence::push_back(std::string item) {
 // The item at the end of the sequence is deleted and size of the sequence is
 // reduced by one. If sequence was empty, throws an exception
 void Sequence::pop_back() {
+
+    if (head == nullptr) {
+        return; //nothing is in the list to delete
+    }
+
+    SequenceNode* current = tail;
+
+    if (tail->prev == nullptr) { //if first = last still will not point anywhere
+        head = tail = nullptr; //reverse of the push_back logic for first node
+    }
+    else {
+        tail = tail->prev; //set tail to the prior node
+        tail->next = nullptr; // now remove the pointer from the new last tail node
+    }
+
+    delete current;
 }
 // The position satisfies ( position >= 0 && position <= last_index() ). The
 // value of item is inserted at position and the size of sequence is increased
