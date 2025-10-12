@@ -78,16 +78,17 @@ void Sequence::pop_back() {
 // by one. Throws an exception if the position is outside the bounds of the
 // sequence
 void Sequence::insert(size_t position, std::string item) {
+
     SequenceNode* current = head;
     SequenceNode* newNode = new SequenceNode(item);//create the item
-
 
     if ( position >= 0 && position <= size() ) {//for some reason instructions have last_item instead of size(below)
         if ( position == size() ) {
             push_back(item);
         }
-         else if (position == 0) {
+        else if (position == 0) {
             newNode->next = head;
+            head->prev = newNode;
             head = newNode;
         }
         else {
