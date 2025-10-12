@@ -132,6 +132,12 @@ bool Sequence::empty() const {
 }
 // Returns the number of elements in the sequence.
 size_t Sequence::size() const {
+
+    else {
+        for (int i = 0 ; i < position ; i++) {
+            current = current->next;
+        }
+    }
 }
 // All items in the sequence are deleted and the memory associated with the
 // sequence is released, resetting the sequence to an empty state that can have
