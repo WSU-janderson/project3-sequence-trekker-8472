@@ -23,7 +23,7 @@ Sequence::~Sequence() {
         current = deleteThisNext;
     }
 
-    head = nullptr; //
+    head = nullptr; // set the beginning and end to nullptrs so that it finishes the whole reset
     tail = nullptr;
 }
 // The current sequence is released and replaced by a (deep) copy of sequence
